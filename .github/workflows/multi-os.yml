@@ -1,0 +1,32 @@
+name: Multi OS Runners
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Display operating system
+        run: echo "Runner OS is $RUNNER_OS"
+
+      - name: Windows PowerShell example
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Write-Host "Running on Windows"
+          $PSVersionTable.PSVersion
+
+      - name: macOS Swift example
+        if: runner.os == 'macOS'
+        run: |
+          swift --version
+          echo 'print("Hello from Swift")' > hello.swift
+          swift hello.swift
