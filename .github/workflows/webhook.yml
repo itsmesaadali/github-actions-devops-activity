@@ -1,0 +1,19 @@
+
+name: External Webhook
+
+on:
+  repository_dispatch:
+    types: [custom-webhook]
+
+jobs:
+  webhook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display webhook information
+        env:
+          EVENT_TYPE: ${{ github.event.action }}
+          MESSAGE: ${{ github.event.client_payload.message }}
+        run: |
+          echo "Event type: $EVENT_TYPE"
+          echo "Webhook message: $MESSAGE"
