@@ -1,0 +1,12 @@
+name: Hello Custom Action
+description: A simple JavaScript greeting action
+
+inputs:
+  name:
+    description: Name of the person to greet
+    required: true
+    default: Student
+
+runs:
+  using: node20
+  main: index.js

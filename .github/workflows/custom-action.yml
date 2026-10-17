@@ -1,0 +1,19 @@
+name: My Custom Action
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run my custom action
+        uses: ./hello-action
+        with:
+          name: Saad ALi (itsmesaadali)
